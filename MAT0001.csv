@@ -1,0 +1,6 @@
+Cycle,Charger,Location,Voltage
+Y,QS,RACK1,50.0
+N,QS,RACK1,50.0Y,SC-G,OTHER:try,69.0
+N,QS,RACK1,50.0
+Y,QS,FLOOR,50.0
+Y,OFF,FLOOR,50.0

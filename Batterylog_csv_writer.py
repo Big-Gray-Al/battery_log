@@ -22,10 +22,8 @@ import csv
 with open(cbat,"r") as file:
     read = csv.reader(file)
     lines = [row for row in read]
-for line in lines[0:1]:
-    print (line)
-for last in lines[-1:]:
-    print (last)
+print (lines[0])
+print (lines[-2])
 
 #Collect Cycle input
 print ("Enter Current Cycle")

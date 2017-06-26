@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import csv
+import os
 
 Batteries = ["MAT0001.csv", "MAT0002.csv", "MAT0003.csv", "MAT0004.csv", "MAT0005.csv", "MAT0006.csv", "MAT0007.csv", "MAT0008.csv"]
 
@@ -13,7 +14,7 @@ def choosebattery():
         choice = (int(input("Which battery? (1-8):")))
         choice -= 1
         if(choice in range(8)):
-            return Batteries[choice]
+            return os.path.join(".","csvs",Batteries[choice])
             done = True
         else:
             print('Sorry, selection must be between 1-8')
@@ -25,7 +26,8 @@ cbat = choosebattery()
 with open(cbat, "r") as file:
     read = csv.reader(file)
     lines = [row for row in read]
-print(lines[0])
+header = (lines[0])
+print(header)
 print(lines[-2])
 
 # Collect Cycle input
@@ -72,7 +74,21 @@ while not done:
         print('Sorry, selection must be between 50 and 70')
 
 
+#get user confirmation, break if no
+entry = [cy, ch, lo, vo]
+print ("Confirm log inputs:")
+print (header)
+print (entry)
+response = None
+while response not in {"Y", "N"}:
+    response = input("Please enter Y or N: ")
+    response = response.upper()
+    if response == "N":
+        print ("log cancelled")
+        break
+    else:
 # add inputs to current battery dataframe
-with open(cbat, "a") as clog:
-    log_app = csv.writer(clog)
-    log_app.writerow([cy, ch, lo, vo])
+        with open(cbat, "a") as clog:
+            log_app = csv.writer(clog)
+            log_app.writerow([cy, ch, lo, vo])
+            print ('log successful!')
